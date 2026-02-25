@@ -1,0 +1,33 @@
+[project]
+name = "knews-mcp"
+version = "0.1.0"
+description = "MCP Server für die knews Datenplattform — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag und Arbeitsmarkt-Daten"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["mcp", "knews", "bundesanzeiger", "handelsregister", "bundestag", "germany"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.25.0",
+]
+
+[project.scripts]
+knews-mcp = "knews_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/openclaw-knitterbot/knews-mcp"
+Repository = "https://github.com/openclaw-knitterbot/knews-mcp"
+Issues = "https://github.com/openclaw-knitterbot/knews-mcp/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
