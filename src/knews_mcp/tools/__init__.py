@@ -10,6 +10,7 @@ from .energie import ENERGIE_TOOLS, handle_energie
 from .foerderung import FOERDERUNG_TOOLS, handle_foerderung
 from .vergabe import VERGABE_TOOLS, handle_vergabe
 from .luftqualitaet import LUFTQUALITAET_TOOLS, handle_luftqualitaet
+from .ted import TED_TOOLS, handle_ted
 from .composite import COMPOSITE_TOOLS, handle_composite
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "FOERDERUNG_TOOLS", "handle_foerderung",
     "VERGABE_TOOLS", "handle_vergabe",
     "LUFTQUALITAET_TOOLS", "handle_luftqualitaet",
+    "TED_TOOLS", "handle_ted",
     "COMPOSITE_TOOLS", "handle_composite",
 ]
 
@@ -37,6 +39,7 @@ ALL_TOOLS = (
     + FOERDERUNG_TOOLS
     + VERGABE_TOOLS
     + LUFTQUALITAET_TOOLS
+    + TED_TOOLS
     + COMPOSITE_TOOLS
 )
 
@@ -51,5 +54,6 @@ TOOL_HANDLERS = {
     **{t.name: handle_foerderung for t in FOERDERUNG_TOOLS},
     **{t.name: handle_vergabe for t in VERGABE_TOOLS},
     **{t.name: handle_luftqualitaet for t in LUFTQUALITAET_TOOLS},
+    **{t.name: handle_ted for t in TED_TOOLS},
     **{t.name: handle_composite for t in COMPOSITE_TOOLS},
 }

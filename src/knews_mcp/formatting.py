@@ -636,6 +636,81 @@ def format_luftqualitaet_ueberschreitungen(data: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# TED (Tenders Electronic Daily — EU-Ausschreibungen)
+# ---------------------------------------------------------------------------
+
+def format_ted_notices(data: dict, page: int, size: int) -> str:
+    total = data.get("total", 0)
+    items = data.get("items", [])
+    lines = [f"🇪🇺 TED EU-Ausschreibungen — {format_pagination(total, page, size)}\n"]
+    for r in items:
+        type_icon = {"CN": "📋", "CAN": "✅", "PIN": "📌"}.get(r.get("notice_type", ""), "📄")
+        lines.append(
+            f"{type_icon} **{_none(r.get('publication_number'))}** "
+            f"[{_none(r.get('notice_type'))} / {_none(r.get('form_type'))}]"
+        )
+        lines.append(
+            f"  🏢 {_trunc(r.get('buyer_name'), 60)} | "
+            f"📍 {_none(r.get('buyer_city'))}, {_none(r.get('buyer_country'))}"
+        )
+        if r.get("winner_name"):
+            lines.append(f"  🏆 Gewinner: {_trunc(r.get('winner_name'), 60)}")
+        val = r.get("total_value")
+        cur = r.get("total_value_cur", "")
+        if val is not None:
+            lines.append(f"  💶 {float(val):,.0f} {cur}")
+        lines.append(
+            f"  🏷 CPV: {_none(r.get('cpv_main'))} | "
+            f"Art: {_none(r.get('contract_nature'))} | "
+            f"Verfahren: {_none(r.get('procedure_type'))}"
+        )
+        lines.append(f"  📅 {_none(r.get('publication_date'))}")
+        if r.get("html_url"):
+            lines.append(f"  🔗 {_none(r.get('html_url'))}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def format_ted_stats(data: dict) -> str:
+    lines = [
+        "📊 TED EU-Vergabe — Statistiken\n",
+        f"Bekanntmachungen gesamt: {data.get('total_notices', 0):,}",
+        "",
+        "**Nach Typ:**",
+    ]
+    for k, v in (data.get("notice_types") or {}).items():
+        label = {"CN": "Contract Notice", "CAN": "Contract Award Notice", "PIN": "Prior Info Notice"}.get(k, k)
+        lines.append(f"  {k} ({label}): {v:,}")
+    lines.append("")
+    lines.append("**Nach Vertragsart:**")
+    for k, v in (data.get("contract_natures") or {}).items():
+        lines.append(f"  {_none(k)}: {v:,}")
+    avg = data.get("avg_value_eur")
+    total_val = data.get("total_value_eur")
+    if avg is not None:
+        lines.append(f"\nØ Auftragswert (EUR): {avg:,.0f} €")
+    if total_val is not None:
+        lines.append(f"Gesamtvolumen (EUR): {total_val:,.0f} €")
+    lines.append("")
+    lines.append("**Top CPV-Codes:**")
+    for entry in (data.get("top_cpv") or [])[:10]:
+        lines.append(f"  {_none(entry.get('cpv'))}: {entry.get('count', 0):,}")
+    return "\n".join(lines)
+
+
+def format_ted_buyer(data: list) -> str:
+    lines = [f"🏢 TED Top-Auftraggeber — {len(data)} Einträge\n"]
+    for i, r in enumerate(data, 1):
+        val = r.get("total_value_eur")
+        val_str = f" | 💶 {float(val):,.0f} €" if val is not None else ""
+        lines.append(
+            f"{i:>3}. **{_none(r.get('buyer_name'))}** ({_none(r.get('buyer_country'))}) "
+            f"— {r.get('notice_count', 0):,} Ausschreibungen{val_str}"
+        )
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # Composite Tools
 # ---------------------------------------------------------------------------
 
