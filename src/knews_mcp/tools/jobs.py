@@ -36,6 +36,14 @@ JOBS_TOOLS = [
                     "type": "string",
                     "description": "Ländercode (z.B. 'DE', 'US', 'CN')",
                 },
+                "date_from": {
+                    "type": "string",
+                    "description": "Nur Jobs ab diesem Datum (YYYY-MM-DD)",
+                },
+                "date_to": {
+                    "type": "string",
+                    "description": "Nur Jobs bis zu diesem Datum (YYYY-MM-DD)",
+                },
                 "page": {
                     "type": "integer",
                     "description": "Seite (0-basiert)",
@@ -65,6 +73,8 @@ async def handle_jobs(name: str, arguments: dict) -> list[TextContent]:
                 "source": arguments.get("source", "all"),
                 "q": arguments.get("q"),
                 "country": arguments.get("country"),
+                "date_from": arguments.get("date_from"),
+                "date_to": arguments.get("date_to"),
                 "page": page,
                 "size": size,
             },
