@@ -26,11 +26,17 @@ from mcp.server.stdio import stdio_server
 from mcp.types import TextContent, Tool
 
 from .tools import ALL_TOOLS, TOOL_HANDLERS
+from .resources import register_resources
+from .prompts import register_prompts
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("knews-mcp")
 
 server = Server("knews-mcp")
+
+# Resources und Prompts registrieren
+register_resources(server)
+register_prompts(server)
 
 
 @server.list_tools()
@@ -77,7 +83,15 @@ def main() -> None:
             "Einen API Key erhältst du unter https://knews.press/user-portal"
         )
 
-    logger.info("knews MCP Server startet (%d Tools)…", len(ALL_TOOLS))
+    from .resources import STATIC_RESOURCES, RESOURCE_TEMPLATES
+    from .prompts import ALL_PROMPTS
+    logger.info(
+        "knews MCP Server startet (%d Tools, %d Resources, %d Resource Templates, %d Prompts)…",
+        len(ALL_TOOLS),
+        len(STATIC_RESOURCES),
+        len(RESOURCE_TEMPLATES),
+        len(ALL_PROMPTS),
+    )
 
     async def _run() -> None:
         async with stdio_server() as (read_stream, write_stream):
