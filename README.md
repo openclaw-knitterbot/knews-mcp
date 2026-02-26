@@ -2,7 +2,7 @@
 
 **MCP Server für die knews Datenplattform** — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag, Arbeitsmarkt, Energie, Förderung, Vergabe und Luftqualitätsdaten — direkt aus Claude, Cursor oder jedem MCP-kompatiblen KI-Assistenten.
 
-[![PyPI](https://img.shields.io/pypi/v/knews-mcp)](https://pypi.org/project/knews-mcp/)
+[![GitHub](https://img.shields.io/github/v/release/openclaw-knitterbot/knews-mcp)](https://github.com/openclaw-knitterbot/knews-mcp/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
@@ -27,23 +27,16 @@
 
 ## Installation
 
-### Option 1: uvx (empfohlen, kein Install nötig)
-
-```bash
-uvx knews-mcp
-```
-
-### Option 2: pip
-
-```bash
-pip install knews-mcp
-knews-mcp
-```
-
-### Option 3: Direkt aus GitHub
+### Option 1: pip von GitHub (empfohlen)
 
 ```bash
 pip install git+https://github.com/openclaw-knitterbot/knews-mcp.git
+```
+
+### Option 2: uvx (kein Install nötig)
+
+```bash
+uvx --from git+https://github.com/openclaw-knitterbot/knews-mcp.git knews-mcp
 ```
 
 ---
@@ -62,23 +55,9 @@ export KNEWS_API_KEY="kna_deinApiKeyHier"
 
 ## Verwendung mit Claude Desktop
 
-Füge folgendes in deine Claude Desktop Konfiguration ein (`~/Library/Application Support/Claude/claude_desktop_config.json` auf macOS):
+Zuerst installieren: `pip install git+https://github.com/openclaw-knitterbot/knews-mcp.git`
 
-```json
-{
-  "mcpServers": {
-    "knews": {
-      "command": "uvx",
-      "args": ["knews-mcp"],
-      "env": {
-        "KNEWS_API_KEY": "kna_deinApiKeyHier"
-      }
-    }
-  }
-}
-```
-
-Oder mit `pip install`:
+Dann in deine Claude Desktop Konfiguration einfügen (`~/Library/Application Support/Claude/claude_desktop_config.json` auf macOS):
 
 ```json
 {
