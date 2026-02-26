@@ -60,3 +60,4 @@ secrets/
 # uv
 .uv/
 uv.lock
+lib/

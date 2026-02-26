@@ -1,0 +1,46 @@
+{
+  "manifest_version": "0.3",
+  "name": "knews-mcp",
+  "display_name": "knews — Deutsche Wirtschaftsdaten",
+  "version": "0.1.2",
+  "description": "MCP Server für die knews Datenplattform: Bundesanzeiger, Handelsregister, Bundestag, Arbeitsmarkt, Energie und mehr.",
+  "long_description": "Zugriff auf 10 deutsche Datenquellen direkt aus Claude Desktop:\n\n- 🏦 Bundesanzeiger — Jahresabschlüsse, Bilanzen, GuV\n- 🏢 Handelsregister — Unternehmen, Geschäftsführer, Prokuristen\n- 📰 News — 2,8 Mio. Artikel aus 60+ Medien\n- 🏛 Bundestag — Drucksachen und Vorgänge\n- 📊 Arbeitsmarkt — BA-Jobbörse mit Statistiken\n- ⚡ Energie — SMARD Strommarkt, MaStR Anlagenregister\n- 💶 Förderung — BMWK-Förderdatenbank\n- 📋 Vergabe — Öffentliche Ausschreibungen\n- 🌬 Luftqualität — UBA-Messstationen\n- 💼 Jobs — SAP/VW Stellenangebote\n\nBenötigt einen API Key von knews.press/portal.",
+  "author": {
+    "name": "knews.press",
+    "url": "https://knews.press"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw-knitterbot/knews-mcp.git"
+  },
+  "homepage": "https://knews.press",
+  "documentation": "https://github.com/openclaw-knitterbot/knews-mcp#readme",
+  "support": "https://github.com/openclaw-knitterbot/knews-mcp/issues",
+  "server": {
+    "type": "python",
+    "entry_point": "src/knews_mcp/server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["-m", "knews_mcp.server"],
+      "env": {
+        "KNEWS_API_KEY": "${user_config.api_key}",
+        "PYTHONPATH": "${__dirname}/src:${__dirname}/lib"
+      }
+    }
+  },
+  "tools_generated": true,
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "knews API Key",
+      "description": "Dein API Key von knews.press/portal. Format: kna_...",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "keywords": ["germany", "bundesanzeiger", "handelsregister", "bundestag", "arbeitsmarkt", "energie", "wirtschaft"],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"]
+  }
+}
