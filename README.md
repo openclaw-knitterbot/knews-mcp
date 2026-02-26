@@ -217,5 +217,5 @@ MIT — siehe [LICENSE](LICENSE)
 
 - 🌐 [knews.press](https://knews.press) — Hauptseite
 - 🔑 [knews.press/portal](https://knews.press/portal) — API Key holen
-- 📖 [api.knews.press/docs](https://api.knews.press/docs) — API Dokumentation
+- 📖 [knews.press/portal](https://knews.press/portal) — API Dokumentation (Login erforderlich)
 - 💬 [GitHub Issues](https://github.com/openclaw-knitterbot/knews-mcp/issues) — Bugs & Feature Requests
