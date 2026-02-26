@@ -10,6 +10,8 @@ from ..client import api_get
 from ..formatting import (
     format_bundestag_drucksache,
     format_bundestag_drucksachen,
+    format_bundestag_person,
+    format_bundestag_personen,
     format_bundestag_stats,
     format_bundestag_vorgaenge,
     format_error,
@@ -148,6 +150,65 @@ BUNDESTAG_TOOLS = [
             },
         },
     ),
+    Tool(
+        name="bundestag_list_personen",
+        description=(
+            "Listet Bundestag-Personen (Mitglieder des Bundestags, MdBs) aus der DIP-Datenbank. "
+            "Filtert nach Name, Funktion (z.B. MdB) und Wahlperiode. "
+            "Nützlich für: Abgeordnetenrecherche, Personen-Identifikation, Wahlperioden-Analyse.\n\n"
+            "List Bundestag members (MdBs) from the DIP database. "
+            "Filter by name, function, and electoral period."
+        ),
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "q": {
+                    "type": "string",
+                    "description": "Namenssuche (Vor- oder Nachname, Teilsuche)",
+                },
+                "funktion": {
+                    "type": "string",
+                    "description": "Funktion der Person (z.B. 'MdB', 'Staatssekretär')",
+                },
+                "wahlperiode": {
+                    "type": "integer",
+                    "description": "Wahlperiode (z.B. 20 für aktuelle, 21 für nächste WP)",
+                },
+                "page": {
+                    "type": "integer",
+                    "description": "Seite (0-basiert)",
+                    "default": 0,
+                    "minimum": 0,
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Ergebnisse pro Seite (Standard: 20, max: 100)",
+                    "default": 20,
+                    "minimum": 1,
+                    "maximum": 100,
+                },
+            },
+        },
+    ),
+    Tool(
+        name="bundestag_get_person",
+        description=(
+            "Ruft eine einzelne Bundestag-Person mit allen Details ab: "
+            "Vor-/Nachname, Funktionen, alle Wahlperioden, Rollen. "
+            "Benötigt die numerische ID aus bundestag_list_personen.\n\n"
+            "Fetch a single Bundestag person with full details by their DIP ID."
+        ),
+        inputSchema={
+            "type": "object",
+            "properties": {
+                "person_id": {
+                    "type": "string",
+                    "description": "DIP-ID der Person (aus bundestag_list_personen, z.B. '1003')",
+                },
+            },
+            "required": ["person_id"],
+        },
+    ),
 ]
 
 
@@ -204,5 +265,29 @@ async def handle_bundestag(name: str, arguments: dict) -> list[TextContent]:
         if not result["ok"]:
             return [TextContent(type="text", text=format_error(result["error"]))]
         return [TextContent(type="text", text=format_bundestag_stats(result["data"]))]
+
+    elif name == "bundestag_list_personen":
+        page = arguments.get("page", 0)
+        size = arguments.get("size", 20)
+        result = await api_get(
+            "/v1/bundestag/personen",
+            params={
+                "q": arguments.get("q"),
+                "funktion": arguments.get("funktion"),
+                "wahlperiode": arguments.get("wahlperiode"),
+                "page": page,
+                "size": size,
+            },
+        )
+        if not result["ok"]:
+            return [TextContent(type="text", text=format_error(result["error"]))]
+        return [TextContent(type="text", text=format_bundestag_personen(result["data"], page, size))]
+
+    elif name == "bundestag_get_person":
+        person_id = arguments["person_id"]
+        result = await api_get(f"/v1/bundestag/personen/{person_id}")
+        if not result["ok"]:
+            return [TextContent(type="text", text=format_error(result["error"]))]
+        return [TextContent(type="text", text=format_bundestag_person(result["data"]))]
 
     return [TextContent(type="text", text=format_error(f"Unbekanntes Tool: {name}"))]

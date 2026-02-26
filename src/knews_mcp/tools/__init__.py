@@ -10,6 +10,7 @@ from .energie import ENERGIE_TOOLS, handle_energie
 from .foerderung import FOERDERUNG_TOOLS, handle_foerderung
 from .vergabe import VERGABE_TOOLS, handle_vergabe
 from .luftqualitaet import LUFTQUALITAET_TOOLS, handle_luftqualitaet
+from .composite import COMPOSITE_TOOLS, handle_composite
 
 __all__ = [
     "BUNDESANZEIGER_TOOLS", "handle_bundesanzeiger",
@@ -22,6 +23,7 @@ __all__ = [
     "FOERDERUNG_TOOLS", "handle_foerderung",
     "VERGABE_TOOLS", "handle_vergabe",
     "LUFTQUALITAET_TOOLS", "handle_luftqualitaet",
+    "COMPOSITE_TOOLS", "handle_composite",
 ]
 
 ALL_TOOLS = (
@@ -35,6 +37,7 @@ ALL_TOOLS = (
     + FOERDERUNG_TOOLS
     + VERGABE_TOOLS
     + LUFTQUALITAET_TOOLS
+    + COMPOSITE_TOOLS
 )
 
 TOOL_HANDLERS = {
@@ -48,4 +51,5 @@ TOOL_HANDLERS = {
     **{t.name: handle_foerderung for t in FOERDERUNG_TOOLS},
     **{t.name: handle_vergabe for t in VERGABE_TOOLS},
     **{t.name: handle_luftqualitaet for t in LUFTQUALITAET_TOOLS},
+    **{t.name: handle_composite for t in COMPOSITE_TOOLS},
 }

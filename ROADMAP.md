@@ -56,17 +56,17 @@ Prompts sind vorgefertigte, parametrisierte Analyse-Templates, die der User im C
 
 ### Composite Tools (ein Call, mehrere Quellen)
 
-- [ ] `company_360` — Handelsregister + Bundesanzeiger + News zu einer Firma
-- [ ] `markt_radar` — Arbeitsmarkt + Jobs + Vergabe für ein Berufsfeld
-- [ ] `region_dashboard` — Energie + Luft + Arbeitsmarkt + Vergabe für ein Bundesland
-- [ ] `foerder_match` — Förderprogramme matchen auf Firmenprofil (Rechtsform, Größe, Branche)
-- [ ] `person_profil` — Handelsregister-Person: alle Mandate, verbundene Firmen, Bundesanzeiger-Daten
+- [x] `company_360` — Handelsregister + Bundesanzeiger + News zu einer Firma
+- [x] `markt_radar` — Arbeitsmarkt + Jobs + Vergabe für ein Berufsfeld
+- [x] `region_dashboard` — Energie + Luft + Arbeitsmarkt + Vergabe für ein Bundesland
+- [x] `foerder_match` — Förderprogramme matchen auf Firmenprofil (Rechtsform, Größe, Branche)
+- [x] `person_profil` — Handelsregister-Person: alle Mandate, verbundene Firmen, Bundesanzeiger-Daten
 
 ### Trend-Tools (Zeitreihen kombinieren)
 
-- [ ] `energie_trend` — SMARD-Erzeugung + MaStR-Zubau kombiniert
-- [ ] `arbeitsmarkt_trend` — Zeitreihe + Facetten-Vergleich über Monate
-- [ ] `vergabe_trend` — Ausschreibungsvolumen nach Branche/Region im Zeitverlauf
+- [x] `energie_trend` — SMARD-Erzeugung + MaStR-Zubau kombiniert
+- [x] `arbeitsmarkt_trend` — Zeitreihe + Facetten-Vergleich über Monate
+- [x] `vergabe_trend` — Ausschreibungsvolumen nach Branche/Region im Zeitverlauf
 
 ---
 
@@ -119,4 +119,4 @@ Prompts sind vorgefertigte, parametrisierte Analyse-Templates, die der User im C
 
 ---
 
-_Zuletzt aktualisiert: 2026-02-26 — Phase 1 (Resources + Prompts) implementiert_
+_Zuletzt aktualisiert: 2026-02-26 — Phase 2 (Cross-Domain Composite Tools + Bundestag Personen) implementiert_
