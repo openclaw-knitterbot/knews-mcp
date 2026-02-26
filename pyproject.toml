@@ -1,6 +1,6 @@
 [project]
 name = "knews-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP Server für die knews Datenplattform — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag und Arbeitsmarkt-Daten"
 readme = "README.md"
 requires-python = ">=3.10"
