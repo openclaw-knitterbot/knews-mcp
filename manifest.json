@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "knews-mcp",
   "display_name": "knews",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "MCP Server für die knews Datenplattform: Bundesanzeiger, Handelsregister, Bundestag, Arbeitsmarkt, Energie und mehr.",
   "long_description": "Zugriff auf 10 deutsche Datenquellen direkt aus Claude Desktop:\n\n- 🏦 Bundesanzeiger — Jahresabschlüsse, Bilanzen, GuV\n- 🏢 Handelsregister — Unternehmen, Geschäftsführer, Prokuristen\n- 📰 News — 2,8 Mio. Artikel aus 60+ Medien\n- 🏛 Bundestag — Drucksachen und Vorgänge\n- 📊 Arbeitsmarkt — BA-Jobbörse mit Statistiken\n- ⚡ Energie — SMARD Strommarkt, MaStR Anlagenregister\n- 💶 Förderung — BMWK-Förderdatenbank\n- 📋 Vergabe — Öffentliche Ausschreibungen\n- 🌬 Luftqualität — UBA-Messstationen\n- 💼 Jobs — SAP/VW Stellenangebote\n\nBenötigt einen API Key von knews.press/portal.",
   "author": {
