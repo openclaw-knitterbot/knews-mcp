@@ -61,3 +61,4 @@ secrets/
 .uv/
 uv.lock
 lib/
+*.mcpb
