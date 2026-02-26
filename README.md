@@ -50,7 +50,7 @@ pip install git+https://github.com/openclaw-knitterbot/knews-mcp.git
 
 ## Konfiguration
 
-Du benötigst einen **knews API Key**. Registriere dich unter [knews.press/user-portal](https://knews.press/user-portal).
+Du benötigst einen **knews API Key**. Registriere dich unter [knews.press/portal](https://knews.press/portal).
 
 Setze den API Key als Umgebungsvariable:
 
@@ -196,7 +196,7 @@ Frage deinen KI-Assistenten zum Beispiel:
 
 ## API Scopes
 
-Abhängig von deinem Abonnement auf [knews.press](https://knews.press/user-portal) stehen unterschiedliche Datenbereiche zur Verfügung:
+Abhängig von deinem Abonnement auf [knews.press](https://knews.press/portal) stehen unterschiedliche Datenbereiche zur Verfügung:
 
 | Scope | Daten |
 |-------|-------|
@@ -237,6 +237,6 @@ MIT — siehe [LICENSE](LICENSE)
 ## Links
 
 - 🌐 [knews.press](https://knews.press) — Hauptseite
-- 🔑 [knews.press/user-portal](https://knews.press/user-portal) — API Key holen
+- 🔑 [knews.press/portal](https://knews.press/portal) — API Key holen
 - 📖 [api.knews.press/docs](https://api.knews.press/docs) — API Dokumentation
 - 💬 [GitHub Issues](https://github.com/openclaw-knitterbot/knews-mcp/issues) — Bugs & Feature Requests

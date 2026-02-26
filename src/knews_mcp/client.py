@@ -40,7 +40,7 @@ async def api_get(path: str, params: dict[str, Any] | None = None) -> dict[str, 
             "error": (
                 "Kein API Key konfiguriert. "
                 "Bitte setze die Umgebungsvariable KNEWS_API_KEY. "
-                "Einen API Key erhältst du unter https://knews.press/user-portal"
+                "Einen API Key erhältst du unter https://knews.press/portal"
             ),
         }
 
@@ -68,7 +68,7 @@ async def api_get(path: str, params: dict[str, Any] | None = None) -> dict[str, 
                 "error": (
                     f"Kein Zugriff (403 Forbidden). "
                     f"Dein API Key hat nicht den erforderlichen Scope für {path}. "
-                    f"Upgrade dein Abonnement unter https://knews.press/user-portal"
+                    f"Upgrade dein Abonnement unter https://knews.press/portal"
                 ),
             }
         elif response.status_code == 429:

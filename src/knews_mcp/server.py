@@ -14,7 +14,7 @@ Stellt alle knews-Datenplattform-Tools als MCP Server bereit:
 - Luftqualität (UBA-Messstationen)
 
 Konfiguration:
-  KNEWS_API_KEY  Umgebungsvariable mit dem API Key (https://knews.press/user-portal)
+  KNEWS_API_KEY  Umgebungsvariable mit dem API Key (https://knews.press/portal)
 """
 
 import asyncio
@@ -80,7 +80,7 @@ def main() -> None:
         logger.warning(
             "WARNUNG: KNEWS_API_KEY nicht gesetzt. "
             "Alle API-Aufrufe werden mit einem Konfigurationsfehler beantwortet. "
-            "Einen API Key erhältst du unter https://knews.press/user-portal"
+            "Einen API Key erhältst du unter https://knews.press/portal"
         )
 
     from .resources import STATIC_RESOURCES, RESOURCE_TEMPLATES
