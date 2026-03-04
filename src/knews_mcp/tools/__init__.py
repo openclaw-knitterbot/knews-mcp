@@ -11,6 +11,11 @@ from .foerderung import FOERDERUNG_TOOLS, handle_foerderung
 from .vergabe import VERGABE_TOOLS, handle_vergabe
 from .luftqualitaet import LUFTQUALITAET_TOOLS, handle_luftqualitaet
 from .ted import TED_TOOLS, handle_ted
+from .blaulicht import BLAULICHT_TOOLS, handle_blaulicht
+from .insolvenzen import INSOLVENZEN_TOOLS, handle_insolvenzen
+from .parteispenden import PARTEISPENDEN_TOOLS, handle_parteispenden
+from .rechtsprechung import RECHTSPRECHUNG_TOOLS, handle_rechtsprechung
+from .zwangsversteigerungen import ZWANGSVERSTEIGERUNGEN_TOOLS, handle_zwangsversteigerungen
 from .composite import COMPOSITE_TOOLS, handle_composite
 
 __all__ = [
@@ -25,6 +30,11 @@ __all__ = [
     "VERGABE_TOOLS", "handle_vergabe",
     "LUFTQUALITAET_TOOLS", "handle_luftqualitaet",
     "TED_TOOLS", "handle_ted",
+    "BLAULICHT_TOOLS", "handle_blaulicht",
+    "INSOLVENZEN_TOOLS", "handle_insolvenzen",
+    "PARTEISPENDEN_TOOLS", "handle_parteispenden",
+    "RECHTSPRECHUNG_TOOLS", "handle_rechtsprechung",
+    "ZWANGSVERSTEIGERUNGEN_TOOLS", "handle_zwangsversteigerungen",
     "COMPOSITE_TOOLS", "handle_composite",
 ]
 
@@ -40,6 +50,11 @@ ALL_TOOLS = (
     + VERGABE_TOOLS
     + LUFTQUALITAET_TOOLS
     + TED_TOOLS
+    + BLAULICHT_TOOLS
+    + INSOLVENZEN_TOOLS
+    + PARTEISPENDEN_TOOLS
+    + RECHTSPRECHUNG_TOOLS
+    + ZWANGSVERSTEIGERUNGEN_TOOLS
     + COMPOSITE_TOOLS
 )
 
@@ -55,5 +70,10 @@ TOOL_HANDLERS = {
     **{t.name: handle_vergabe for t in VERGABE_TOOLS},
     **{t.name: handle_luftqualitaet for t in LUFTQUALITAET_TOOLS},
     **{t.name: handle_ted for t in TED_TOOLS},
+    **{t.name: handle_blaulicht for t in BLAULICHT_TOOLS},
+    **{t.name: handle_insolvenzen for t in INSOLVENZEN_TOOLS},
+    **{t.name: handle_parteispenden for t in PARTEISPENDEN_TOOLS},
+    **{t.name: handle_rechtsprechung for t in RECHTSPRECHUNG_TOOLS},
+    **{t.name: handle_zwangsversteigerungen for t in ZWANGSVERSTEIGERUNGEN_TOOLS},
     **{t.name: handle_composite for t in COMPOSITE_TOOLS},
 }

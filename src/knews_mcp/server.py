@@ -1,5 +1,5 @@
 """
-knews MCP Server
+knews MCP Server v0.2.0
 
 Stellt alle knews-Datenplattform-Tools als MCP Server bereit:
 - Bundesanzeiger (Jahresabschlüsse, Bilanzen)
@@ -10,8 +10,14 @@ Stellt alle knews-Datenplattform-Tools als MCP Server bereit:
 - Arbeitsmarkt (BA-Jobbörse, Statistiken)
 - Energie (SMARD Strommarkt, MaStR Anlagenregister)
 - Förderung (BMWK-Förderdatenbank)
-- Vergabe (öffentliche Ausschreibungen)
+- Vergabe (öffentliche Ausschreibungen, national + EU/TED)
 - Luftqualität (UBA-Messstationen)
+- Blaulicht (Polizei, Feuerwehr, Rettungsdienst)
+- Insolvenzen (Insolvenzbekanntmachungen, 69.000+)
+- Parteispenden (Bundestag-Transparenzdatenbank)
+- Rechtsprechung (64.000+ Urteile und Beschlüsse)
+- Zwangsversteigerungen (ZVG-Portal, 2.900+ Objekte)
+- Composite-Tools (company_360, insolvenz_radar, wirtschafts_vernetzung, region_radar, ...)
 
 Konfiguration:
   KNEWS_API_KEY  Umgebungsvariable mit dem API Key (https://knews.press/portal)

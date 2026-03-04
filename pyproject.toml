@@ -1,7 +1,7 @@
 [project]
 name = "knews-mcp"
-version = "0.1.5"
-description = "MCP Server für die knews Datenplattform — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag und Arbeitsmarkt-Daten"
+version = "0.2.0"
+description = "MCP Server für die knews Datenplattform — Bundesanzeiger, Handelsregister, News, Bundestag, Insolvenzen, Parteispenden, Rechtsprechung, Zwangsversteigerungen, Blaulicht und mehr"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

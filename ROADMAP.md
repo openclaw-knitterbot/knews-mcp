@@ -1,33 +1,36 @@
 # ROADMAP.md — knews-mcp Ausbaukonzept
 
-## Status Quo (v0.1.0)
+## Status Quo (v0.2.0)
 
-- 29 Tools über 10 Datenbereiche (Bundesanzeiger, Handelsregister, News, Bundestag, Jobs, Arbeitsmarkt, Energie, Förderung, Vergabe, Luftqualität)
-- Nur MCP `tools` — keine Resources, Prompts oder Sampling
+- ~59 Tools über 17 Datenbereiche
+- Neue Datenbereiche: Blaulicht, Insolvenzen, Parteispenden, Rechtsprechung, Zwangsversteigerungen
+- Neue Composite-Tools: insolvenz_radar, wirtschafts_vernetzung, region_radar
+- MCP `tools` + `resources` + `prompts`
 - Nur `stdio`-Transport (lokaler Betrieb)
 - Read-only GET-Requests via httpx
-- Nicht auf PyPI publiziert
 
 ---
 
-## Phase 0: API-Lücken schließen
+## Phase 0: API-Lücken schließen ✅ ERLEDIGT
 
 **Ziel:** Alles was in den DBs steckt, auch über die API + MCP zugänglich machen.
 
-- [ ] Gap-Analyse: DB-Tabellen vs. API-Endpunkte (Sub-Agent läuft)
-- [ ] Fehlende Endpunkte in knews-data-api nachziehen
-- [ ] Fehlende MCP-Tools für neue Endpunkte
-- [ ] knews-user-portal Doku aktualisieren
+- [x] Gap-Analyse: DB-Tabellen vs. API-Endpunkte
+- [x] Fehlende Endpunkte in knews-data-api nachziehen
+- [x] Blaulicht-Tools (`blaulicht_suche`, `blaulicht_meldungen`)
+- [x] Insolvenzen-Tools (`insolvenzen_suche`, `insolvenzen_liste`, `insolvenzen_stats`)
+- [x] Parteispenden-Tools (`parteispenden_suche`, `parteispenden_stats`, `parteispenden_parteien`)
+- [x] Rechtsprechung-Tools (`rechtsprechung_suche`, `rechtsprechung_stats`, `rechtsprechung_jurisdictions`)
+- [x] Zwangsversteigerungen-Tools (`zvg_stats`, `zvg_liste`, `zvg_suche`)
+- [x] knews-user-portal Doku aktualisieren
 
 ---
 
-## Phase 1: MCP-Protokoll voll ausnutzen
+## Phase 1: MCP-Protokoll voll ausnutzen ✅ ERLEDIGT
 
 **Ziel:** Resources und Prompts nutzen — bringt den größten Hebel bei geringstem Aufwand.
 
 ### Resources (browsbare Datenquellen)
-
-MCP Resources erlauben Clients, Daten zu browsen, cachen und als Kontext zu halten.
 
 - [x] `knews://company/{id}` — Handelsregister-Unternehmensprofil
 - [x] `knews://bundesanzeiger/report/{id}` — Jahresabschluss mit Bilanz/GuV
@@ -40,8 +43,6 @@ MCP Resources erlauben Clients, Daten zu browsen, cachen und als Kontext zu halt
 
 ### Prompts (vorgefertigte Analysevorlagen)
 
-Prompts sind vorgefertigte, parametrisierte Analyse-Templates, die der User im Client auswählen kann.
-
 - [x] `unternehmenscheck` — Komplettbild: HR + Bundesanzeiger + News + Personen
 - [x] `branchenanalyse` — Arbeitsmarkt + Förderung + Vergabe für eine Branche
 - [x] `politikfeld_briefing` — Bundestag + Vergabe + Förderung zu einem Thema
@@ -50,23 +51,29 @@ Prompts sind vorgefertigte, parametrisierte Analyse-Templates, die der User im C
 
 ---
 
-## Phase 2: Cross-Domain Intelligence
+## Phase 2: Cross-Domain Intelligence ✅ ERLEDIGT
 
-**Ziel:** Die 10 isolierten Datenbereiche intelligent verknüpfen. Das ist der echte USP — kein anderer MCP-Server kann 10 deutsche Datenquellen kreuzen.
+**Ziel:** Die Datenbereiche intelligent verknüpfen.
 
 ### Composite Tools (ein Call, mehrere Quellen)
 
-- [x] `company_360` — Handelsregister + Bundesanzeiger + News zu einer Firma
+- [x] `company_360` — HR + Bundesanzeiger + News + Insolvenz-Check + ZVG-Check + Jobs-Signal
 - [x] `markt_radar` — Arbeitsmarkt + Jobs + Vergabe für ein Berufsfeld
 - [x] `region_dashboard` — Energie + Luft + Arbeitsmarkt + Vergabe für ein Bundesland
-- [x] `foerder_match` — Förderprogramme matchen auf Firmenprofil (Rechtsform, Größe, Branche)
-- [x] `person_profil` — Handelsregister-Person: alle Mandate, verbundene Firmen, Bundesanzeiger-Daten
+- [x] `foerder_match` — Förderprogramme matchen auf Firmenprofil
+- [x] `person_profil` — HR-Person: alle Mandate + Firmen + News + Parteispenden-Check
 
 ### Trend-Tools (Zeitreihen kombinieren)
 
 - [x] `energie_trend` — SMARD-Erzeugung + MaStR-Zubau kombiniert
 - [x] `arbeitsmarkt_trend` — Zeitreihe + Facetten-Vergleich über Monate
 - [x] `vergabe_trend` — Ausschreibungsvolumen nach Branche/Region im Zeitverlauf
+
+### Neue Composite-Tools (v0.2.0)
+
+- [x] `insolvenz_radar` — Insolvenz + HR + Bundesanzeiger + ZVG → Risiko-Assessment
+- [x] `wirtschafts_vernetzung` — HR-Mandate + Parteispenden + Bundesanzeiger → Vernetzungsmap
+- [x] `region_radar` — Blaulicht + Insolvenzen + ZVG + Arbeitsmarkt → Lageübersicht
 
 ---
 
@@ -110,13 +117,13 @@ Prompts sind vorgefertigte, parametrisierte Analyse-Templates, die der User im C
 
 | Phase | Aufwand | Impact | Priorität |
 |-------|---------|--------|-----------|
-| 0 — API-Lücken | Mittel | Hoch (Grundlage) | 🔴 Sofort |
-| 1 — Resources + Prompts | Gering | Hoch (UX-Sprung) | 🔴 Sofort |
-| 2 — Cross-Domain | Mittel | Sehr hoch (USP) | 🟡 Nächster Sprint |
+| 0 — API-Lücken | Mittel | Hoch (Grundlage) | ✅ Erledigt |
+| 1 — Resources + Prompts | Gering | Hoch (UX-Sprung) | ✅ Erledigt |
+| 2 — Cross-Domain | Mittel | Sehr hoch (USP) | ✅ Erledigt |
 | 3 — SSE + Performance | Mittel | Mittel | 🟢 Wenn externe Nutzer |
-| 4 — Distribution | Gering–Mittel | Hoch (Reichweite) | 🟡 Nach Phase 1+2 |
+| 4 — Distribution | Gering–Mittel | Hoch (Reichweite) | 🟡 Nächster Sprint |
 | 5 — Write-Ops | Hoch | Mittel–Hoch | 🟢 Langfristig |
 
 ---
 
-_Zuletzt aktualisiert: 2026-02-26 — Phase 2 (Cross-Domain Composite Tools + Bundestag Personen) implementiert_
+_Zuletzt aktualisiert: 2026-03-04 — v0.2.0: 5 neue Datenbereiche + erweiterte Composite-Tools_

@@ -52,7 +52,7 @@ async def api_get(path: str, params: dict[str, Any] | None = None) -> dict[str, 
                 clean_params[k] = v
 
     url = f"{API_BASE}{path}"
-    headers = {"X-Api-Key": key, "User-Agent": "knews-mcp/0.1.0"}
+    headers = {"X-Api-Key": key, "User-Agent": "knews-mcp/0.2.0"}
 
     try:
         async with httpx.AsyncClient(timeout=DEFAULT_TIMEOUT) as client:

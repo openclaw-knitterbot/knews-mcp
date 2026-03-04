@@ -1,8 +1,8 @@
 # knews-mcp
 
-**MCP Server für die knews Datenplattform** — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag, Arbeitsmarkt, Energie, Förderung, Vergabe und Luftqualitätsdaten — direkt aus Claude, Cursor oder jedem MCP-kompatiblen KI-Assistenten.
+**MCP Server für die knews Datenplattform** — Zugriff auf Bundesanzeiger, Handelsregister, News, Bundestag, Insolvenzen, Parteispenden, Rechtsprechung, Zwangsversteigerungen, Blaulicht und mehr — direkt aus Claude, Cursor oder jedem MCP-kompatiblen KI-Assistenten.
 
-[![GitHub](https://img.shields.io/github/v/release/openclaw-knitterbot/knews-mcp)](https://github.com/openclaw-knitterbot/knews-mcp/releases)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue)](https://github.com/openclaw-knitterbot/knews-mcp/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
@@ -10,6 +10,8 @@
 ## Was ist knews-mcp?
 
 [knews](https://knews.press) ist eine Datenplattform für deutsche Wirtschafts- und Verwaltungsdaten. `knews-mcp` macht diese Daten per [Model Context Protocol (MCP)](https://modelcontextprotocol.io) für KI-Assistenten verfügbar.
+
+**~59 Tools über 17 Datenbereiche — alles aus Deutschland, alles in einem MCP-Server.**
 
 **Datenquellen:**
 - 🏦 **Bundesanzeiger** — Jahresabschlüsse, Bilanzen, GuV (Elasticsearch + MySQL)
@@ -21,7 +23,13 @@
 - ⚡ **Energie** — SMARD Stromerzeugung/-verbrauch, MaStR Anlagenregister
 - 💶 **Förderung** — BMWK-Förderdatenbank mit Förderprogrammen
 - 📋 **Vergabe** — Öffentliche Ausschreibungen (DTVP)
+- 🇪🇺 **TED** — EU-weite Vergabebekanntmachungen (Tenders Electronic Daily)
 - 🌬 **Luftqualität** — UBA-Messstationen und Schadstoffmessungen
+- 🚨 **Blaulicht** — Polizei-, Feuerwehr- und Rettungsdienstmeldungen (15.000+)
+- ⚠️ **Insolvenzen** — Insolvenzbekanntmachungen (69.000+ Verfahren)
+- 💰 **Parteispenden** — Bundestag-Transparenzdatenbank (Spenden > 35.000 €)
+- ⚖️ **Rechtsprechung** — 64.000+ Urteile und Beschlüsse aus deutschen Gerichten
+- 🏠 **Zwangsversteigerungen** — ZVG-Portal Daten aus deutschen Amtsgerichten (2.900+)
 
 ---
 
@@ -113,6 +121,8 @@ Gleiche Konfiguration wie oben — ersetze `command` und `args` entsprechend dei
 | `bundestag_list_drucksachen` | Drucksachen (Anträge, Gesetzentwürfe) mit LLM-Klassifikation |
 | `bundestag_get_drucksache` | Einzeldrucksache + Themen/Keywords |
 | `bundestag_list_vorgaenge` | Parlamentarische Vorgänge |
+| `bundestag_list_personen` | Abgeordnete und Parlamentarier |
+| `bundestag_get_person` | Einzelperson mit Rollen und Wahlperioden |
 | `bundestag_stats` | Statistiken nach Typ und Themenfeld |
 
 ### 💼 Jobs & Arbeitsmarkt
@@ -140,13 +150,21 @@ Gleiche Konfiguration wie oben — ersetze `command` und `args` entsprechend dei
 | `foerderung_list_programme` | Förderprogramme (BMWK-Datenbank) |
 | `foerderung_get_programm` | Programmdetail mit Volltext |
 
-### 📋 Vergabe
+### 📋 Vergabe (National)
 
 | Tool | Beschreibung |
 |------|-------------|
 | `vergabe_ausschreibungen` | Öffentliche Ausschreibungen (DTVP) |
 | `vergabe_auftraggeber` | Top-Auftraggeber nach Aktivität |
 | `vergabe_stats` | KPI-Übersicht (Typen, Vergaberecht, Fristen) |
+
+### 🇪🇺 TED (EU-Vergabe)
+
+| Tool | Beschreibung |
+|------|-------------|
+| `ted_notices` | EU-Vergabebekanntmachungen (TED) |
+| `ted_stats` | TED-Statistiken (Typen, CPV, Volumen) |
+| `ted_top_buyers` | Top-Auftraggeber in der EU |
 
 ### 🌬 Luftqualität
 
@@ -156,6 +174,65 @@ Gleiche Konfiguration wie oben — ersetze `command` und `args` entsprechend dei
 | `luftqualitaet_messungen` | Schadstoffmesswerte (PM10, NO2, O3...) |
 | `luftqualitaet_ueberschreitungen` | Grenzwertüberschreitungen nach Station und Jahr |
 
+### 🚨 Blaulicht *(neu in v0.2.0)*
+
+| Tool | Beschreibung |
+|------|-------------|
+| `blaulicht_suche` | Volltextsuche in Blaulicht-Meldungen (Elasticsearch) |
+| `blaulicht_meldungen` | Aktuelle Polizei-/Feuerwehr-/Rettungsmeldungen (SQL) |
+
+### ⚠️ Insolvenzen *(neu in v0.2.0)*
+
+| Tool | Beschreibung |
+|------|-------------|
+| `insolvenzen_suche` | Volltextsuche in Insolvenzbekanntmachungen (ES) |
+| `insolvenzen_liste` | Insolvenzbekanntmachungen (SQL, nach Region/Gericht) |
+| `insolvenzen_stats` | Statistiken: Eröffnungen, Abweisungen, Firmensachen |
+
+### 💰 Parteispenden *(neu in v0.2.0)*
+
+| Tool | Beschreibung |
+|------|-------------|
+| `parteispenden_suche` | Spenden nach Spender, Partei, Jahr, Betrag filtern |
+| `parteispenden_stats` | Gesamtstatistiken nach Partei |
+| `parteispenden_parteien` | Alle Parteien mit Spendenzahlen |
+
+### ⚖️ Rechtsprechung *(neu in v0.2.0)*
+
+| Tool | Beschreibung |
+|------|-------------|
+| `rechtsprechung_suche` | Urteile und Beschlüsse suchen (Gerichtsbarkeit, Ebene, Typ) |
+| `rechtsprechung_stats` | Statistiken: nach Gerichtsbarkeit, Ebene, Entscheidungstyp |
+| `rechtsprechung_jurisdictions` | Alle Gerichtsbarkeiten mit Fallzahlen |
+
+### 🏠 Zwangsversteigerungen *(neu in v0.2.0)*
+
+| Tool | Beschreibung |
+|------|-------------|
+| `zvg_stats` | Überblick: Gesamtzahl, nach Bundesland, Verkehrswerte, Termine |
+| `zvg_liste` | Versteigerungstermine (Bundesland, Datum, Wert, Gericht) |
+| `zvg_suche` | Volltextsuche in ZVG-Objekten (Elasticsearch) |
+
+---
+
+## 🔭 Composite-Tools (Cross-Domain Intelligence)
+
+Der eigentliche USP von knews-mcp: **Ein API-Call, mehrere Datenquellen kombiniert.**
+
+| Tool | Kombiniert |
+|------|-----------|
+| `company_360` | HR + Bundesanzeiger + News + **Insolvenz-Check** + **ZVG-Check** + Jobs-Signal |
+| `person_profil` | HR-Mandate + Firmen + News + **Parteispenden-Check** |
+| `markt_radar` | Arbeitsmarkt + Vergabe für ein Berufsfeld |
+| `region_dashboard` | Energie + Luftqualität + Arbeitsmarkt + Vergabe |
+| `foerder_match` | Passende Förderprogramme matchen |
+| `energie_trend` | SMARD-Erzeugung + MaStR-Zubau im Zeitverlauf |
+| `arbeitsmarkt_trend` | Zeitreihenanalyse Stellenmarkt |
+| `vergabe_trend` | Ausschreibungsvolumen im Zeitverlauf |
+| `insolvenz_radar` *(neu)* | Insolvenz + HR + Bundesanzeiger + ZVG → Risiko-Assessment |
+| `wirtschafts_vernetzung` *(neu)* | HR-Mandate + Parteispenden + Bundesanzeiger → Vernetzungsmap |
+| `region_radar` *(neu)* | Blaulicht + Insolvenzen + ZVG + Arbeitsmarkt → Lageübersicht |
+
 ---
 
 ## Beispiel-Queries
@@ -164,12 +241,16 @@ Frage deinen KI-Assistenten zum Beispiel:
 
 - *„Suche den Jahresabschluss von BMW aus 2022 im Bundesanzeiger."*
 - *„Wer ist Geschäftsführer der Wirecard AG laut Handelsregister?"*
+- *„Gibt es laufende Insolvenzverfahren gegen die Mustermann GmbH?"*
+- *„Welche Parteispenden hat Herr Friedrich Merz getätigt?"*
+- *„Zeig mir aktuelle Zwangsversteigerungen in Bayern unter 200.000 €."*
+- *„Erstelle ein Risiko-Assessment für die Signa Holding."* → `insolvenz_radar`
+- *„Wer ist Friedrich Merz wirtschaftlich vernetzt?"* → `wirtschafts_vernetzung`
+- *„Was passiert gerade in Sachsen-Anhalt?"* → `region_radar`
 - *„Zeig mir alle Drucksachen zum Thema Klimaschutz aus der aktuellen Wahlperiode."*
 - *„Wie hat sich die Solarstromproduktion in Deutschland in den letzten 30 Tagen entwickelt?"*
 - *„Welche KMU-Förderprogramme des Bundes gibt es für Digitalisierung?"*
-- *„Zeig mir aktuelle Ausschreibungen im Bereich IT-Infrastruktur."*
 - *„Wie ist die Luftqualität (NO2) in München aktuell?"*
-- *„Wie viele offene Stellen gibt es gerade bei SAP?"*
 
 ---
 
@@ -187,8 +268,14 @@ Abhängig von deinem Abonnement auf [knews.press](https://knews.press/portal) st
 | `arbeitsmarkt:read` | BA-Jobbörse |
 | `energie:read` | SMARD + MaStR |
 | `foerderung:read` | Förderprogramme |
-| `vergabe:read` | Ausschreibungen |
+| `vergabe:read` | Nationale Ausschreibungen |
+| `ted:read` | EU-Vergabe (TED) |
 | `luftqualitaet:read` | UBA Luftqualität |
+| `blaulicht:read` | Polizei/Feuerwehr/Rettung |
+| `insolvenzen:read` | Insolvenzbekanntmachungen |
+| `parteispenden:read` | Parteispenden-Transparenz |
+| `rechtsprechung:read` | Gerichtsurteile und Beschlüsse |
+| `zwangsversteigerungen:read` | ZVG-Daten |
 | `all` | Vollzugriff |
 
 Tools ohne den passenden Scope geben eine 403-Fehlermeldung zurück.
@@ -204,6 +291,21 @@ pip install -e ".[dev]"
 export KNEWS_API_KEY="kna_..."
 knews-mcp
 ```
+
+---
+
+## Changelog
+
+### v0.2.0 (2026-03-04)
+- **Neu:** 5 neue Datenbereiche — Blaulicht, Insolvenzen, Parteispenden, Rechtsprechung, Zwangsversteigerungen
+- **Neu:** 3 neue Composite-Tools — `insolvenz_radar`, `wirtschafts_vernetzung`, `region_radar`
+- **Erweitert:** `company_360` mit Insolvenz-Check + ZVG-Check + Jobs-Signal
+- **Erweitert:** `person_profil` mit Parteispenden-Check
+- ~59 Tools total (vorher 29)
+
+### v0.1.5
+- TED EU-Vergabe Tools
+- Composite Tools (company_360, person_profil, markt_radar etc.)
 
 ---
 
