@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "knews-mcp",
   "display_name": "knews",
-  "version": "0.1.4",
-  "description": "MCP Server für die knews Datenplattform: Bundesanzeiger, Handelsregister, Bundestag, Arbeitsmarkt, Energie und mehr.",
-  "long_description": "Zugriff auf 10 deutsche Datenquellen direkt aus Claude Desktop:\n\n- 🏦 Bundesanzeiger — Jahresabschlüsse, Bilanzen, GuV\n- 🏢 Handelsregister — Unternehmen, Geschäftsführer, Prokuristen\n- 📰 News — 2,8 Mio. Artikel aus 60+ Medien\n- 🏛 Bundestag — Drucksachen und Vorgänge\n- 📊 Arbeitsmarkt — BA-Jobbörse mit Statistiken\n- ⚡ Energie — SMARD Strommarkt, MaStR Anlagenregister\n- 💶 Förderung — BMWK-Förderdatenbank\n- 📋 Vergabe — Öffentliche Ausschreibungen\n- 🌬 Luftqualität — UBA-Messstationen\n- 💼 Jobs — SAP/VW Stellenangebote\n\nBenötigt einen API Key von knews.press/portal.",
+  "version": "0.2.0",
+  "description": "MCP Server für die knews Datenplattform: Bundesanzeiger, Handelsregister, Insolvenzen, Parteispenden, Zwangsversteigerungen, Blaulicht und mehr.",
+  "long_description": "Zugriff auf 17 deutsche Datenquellen direkt aus Claude Desktop:\n\n- 🏦 Bundesanzeiger — Jahresabschlüsse, Bilanzen, GuV\n- 🏢 Handelsregister — Unternehmen, Geschäftsführer, Prokuristen\n- 📰 News — 3,3 Mio. Artikel aus 60+ Medien\n- 🏛 Bundestag — Drucksachen und Vorgänge\n- 📊 Arbeitsmarkt — BA-Jobbörse mit Statistiken\n- ⚡ Energie — SMARD Strommarkt, MaStR Anlagenregister\n- 💶 Förderung — BMWK-Förderdatenbank\n- 📋 Vergabe — Öffentliche Ausschreibungen (DTVP + TED EU)\n- 🌬 Luftqualität — UBA-Messstationen\n- 💼 Jobs — DAX-40 Stellenangebote\n- 💸 Insolvenzen — 69.000+ Insolvenzbekanntmachungen\n- 🏛️ Parteispenden — Alle Spenden >35k€ seit 2009\n- ⚖️ Rechtsprechung — 64.000+ Urteile und Beschlüsse\n- 🏠 Zwangsversteigerungen — 2.900+ aktuelle Termine\n- 🚨 Blaulicht — Polizei/Feuerwehr/THW-Meldungen\n\nInklusive Cross-Domain Composite Tools: insolvenz_radar, wirtschafts_vernetzung, region_radar u.v.m.\n\nBenötigt einen API Key von knews.press/portal.",
   "author": {
     "name": "knews.press",
     "url": "https://knews.press"
@@ -38,7 +38,7 @@
       "required": true
     }
   },
-  "keywords": ["germany", "bundesanzeiger", "handelsregister", "bundestag", "arbeitsmarkt", "energie", "wirtschaft"],
+  "keywords": ["germany", "bundesanzeiger", "handelsregister", "bundestag", "insolvenzen", "parteispenden", "zwangsversteigerungen", "blaulicht", "rechtsprechung", "arbeitsmarkt", "energie", "wirtschaft", "investigativ"],
   "license": "MIT",
   "compatibility": {
     "platforms": ["darwin", "win32", "linux"]
