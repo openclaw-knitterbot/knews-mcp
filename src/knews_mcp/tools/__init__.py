@@ -17,6 +17,7 @@ from .parteispenden import PARTEISPENDEN_TOOLS, handle_parteispenden
 from .rechtsprechung import RECHTSPRECHUNG_TOOLS, handle_rechtsprechung
 from .zwangsversteigerungen import ZWANGSVERSTEIGERUNGEN_TOOLS, handle_zwangsversteigerungen
 from .composite import COMPOSITE_TOOLS, handle_composite
+from .epstein import EPSTEIN_TOOLS, handle_epstein
 
 __all__ = [
     "BUNDESANZEIGER_TOOLS", "handle_bundesanzeiger",
@@ -36,6 +37,7 @@ __all__ = [
     "RECHTSPRECHUNG_TOOLS", "handle_rechtsprechung",
     "ZWANGSVERSTEIGERUNGEN_TOOLS", "handle_zwangsversteigerungen",
     "COMPOSITE_TOOLS", "handle_composite",
+    "EPSTEIN_TOOLS", "handle_epstein",
 ]
 
 ALL_TOOLS = (
@@ -56,6 +58,7 @@ ALL_TOOLS = (
     + RECHTSPRECHUNG_TOOLS
     + ZWANGSVERSTEIGERUNGEN_TOOLS
     + COMPOSITE_TOOLS
+    + EPSTEIN_TOOLS
 )
 
 TOOL_HANDLERS = {
@@ -76,4 +79,5 @@ TOOL_HANDLERS = {
     **{t.name: handle_rechtsprechung for t in RECHTSPRECHUNG_TOOLS},
     **{t.name: handle_zwangsversteigerungen for t in ZWANGSVERSTEIGERUNGEN_TOOLS},
     **{t.name: handle_composite for t in COMPOSITE_TOOLS},
+    **{t.name: handle_epstein for t in EPSTEIN_TOOLS},
 }

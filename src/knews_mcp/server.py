@@ -1,5 +1,5 @@
 """
-knews MCP Server v0.2.0
+knews MCP Server v0.2.1
 
 Stellt alle knews-Datenplattform-Tools als MCP Server bereit:
 - Bundesanzeiger (Jahresabschlüsse, Bilanzen)
@@ -17,6 +17,7 @@ Stellt alle knews-Datenplattform-Tools als MCP Server bereit:
 - Parteispenden (Bundestag-Transparenzdatenbank)
 - Rechtsprechung (64.000+ Urteile und Beschlüsse)
 - Zwangsversteigerungen (ZVG-Portal, 2.900+ Objekte)
+- Epstein Files (DOJ declassified documents, bilingual fulltext, 4 tools)
 - Composite-Tools (company_360, insolvenz_radar, wirtschafts_vernetzung, region_radar, ...)
 
 Konfiguration:
